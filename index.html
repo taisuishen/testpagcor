@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Blocked Page Replica</title>
+
+<style>
+:root{
+  --bg:#dcdcdc;
+  --panel:#f7f7f7;
+  --text:#111;
+  --red:#ea3d1d;
+  --line:#e33a2b;
+  --muted:#666;
+  --link:#0d43c6;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: Arial, Helvetica, sans-serif;
+  background:var(--bg);
+}
+.topbar{
+  background:#0c4f87;
+  height:26px;
+}
+.frame{
+  width:min(740px, calc(100vw - 24px));
+  margin:0 auto;
+  background:#fff;
+  min-height:calc(100vh - 26px);
+  padding:10px 0 28px;
+}
+.icon{
+  width:86px;height:86px;margin:8px auto 4px;display:block;
+}
+h1{
+  text-align:center;
+  color:var(--red);
+  font-size:28px;
+  font-weight:800;
+}
+.lead, .sublead{
+  text-align:center;
+  font-size:15px;
+  padding:0 18px;
+}
+.logos{
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin:16px 0;
+}
+.seal{
+  width:44px;height:44px;border-radius:50%;
+  background:#fff;border:1px solid #ddd;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;
+}
+.panel{
+  width:min(620px, calc(100% - 48px));
+  margin:0 auto;
+  background:var(--panel);
+  border-radius:14px;
+  padding:30px 22px;
+}
+.grid-wrap{
+  border:1px solid var(--line);
+  padding:24px;
+  position:relative;
+  background:#fff;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+.item{text-align:center;font-size:13px;}
+.card{
+  width:82px;height:82px;margin:auto;
+  border-radius:16px;background:#f8f8f8;
+  display:flex;align-items:center;justify-content:center;
+}
+.fake-logo{
+  width:72px;height:72px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:bold;
+}
+.ll{background:#f9a825}
+.sp{background:#3d4674}
+.ok{background:#7a2c83}
+.cw{background:#d3b24a}
+.mf{background:#2a84d7}
+.dg{background:#cf2b20}
+.bb{background:#c48d35}
+.b88{background:#8b3fc9}
+.hann{background:#b10f10}
+.fw{background:#1e3f93}
+.pat{background:#df3127}
+.sg8{background:#dd274d}
+.bingo{background:#16a34a}
+.more{
+  position:absolute;
+  bottom:-20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#f8f8f8;
+  padding:6px 14px;
+  border-radius:10px;
+  border:1px solid #ddd;
+}
+.footer-note{text-align:center;margin:20px 0;font-weight:bold;}
+.copyright{text-align:center;color:#666;}
+</style>
+</head>
+
+<body>
+
+<div class="topbar"></div>
+
+<div class="frame">
+
+<svg class="icon" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="32" stroke="#e44f2f" stroke-width="7" fill="none"/>
+  <line x1="25" y1="25" x2="75" y2="75" stroke="#e44f2f" stroke-width="8"/>
+</svg>
+
+<h1>ACCESS RESTRICTED</h1>
+
+<p class="lead">
+This website is <b>not licensed</b>. Users reported scams and lost money.
+</p>
+
+<div class="logos">
+<div class="seal">DOJ</div>
+<div class="seal">DICT</div>
+<div class="seal">NBI</div>
+<div class="seal">CICC</div>
+<div class="seal">PAGCOR</div>
+</div>
+
+<div class="panel">
+<div class="grid-wrap">
+
+<div class="grid" id="grid"></div>
+
+<div class="more">More ›</div>
+
+</div>
+</div>
+
+<div class="footer-note">
+Keep the online space safe
+</div>
+
+<div class="copyright">
+© 2026 CICC
+</div>
+
+</div>
+
+<script>
+const sites = [
+ {name:"789Bingo", cls:"bingo"},
+ {name:"Legend Link", cls:"ll"},
+ {name:"SportsPlus", cls:"sp"},
+ {name:"Okada", cls:"ok"},
+ {name:"CrazyWin", cls:"cw"},
+ {name:"megaFUNalo", cls:"mf"},
+ {name:"DeskGame", cls:"dg"},
+ {name:"BigBunny", cls:"bb"},
+ {name:"BET88", cls:"b88"},
+ {name:"Hann Online", cls:"hann"},
+ {name:"FASTWIN", cls:"fw"},
+ {name:"PATOKBET", cls:"pat"},
+ {name:"SG8 Casino", cls:"sg8"}
+];
+
+function shuffle(arr){
+  return arr.sort(()=>Math.random()-0.5);
+}
+
+const visited = localStorage.getItem("visited");
+let list;
+
+if(!visited){
+  const bingo = sites[0];
+  const others = sites.slice(1);
+  list = [bingo, ...shuffle(others)];
+  localStorage.setItem("visited","1");
+}else{
+  list = shuffle([...sites]);
+}
+
+const grid = document.getElementById("grid");
+
+list.forEach(s=>{
+  const div = document.createElement("div");
+  div.className = "item";
+
+  div.innerHTML = `
+    <div class="card">
+      <div class="fake-logo ${s.cls}">
+        ${s.name === "789Bingo" ? "789" : s.name.split(" ")[0]}
+      </div>
+    </div>
+    <a href="#">${s.name}</a>
+  `;
+
+  grid.appendChild(div);
+});
+</script>
+
+</body>
+</html>
