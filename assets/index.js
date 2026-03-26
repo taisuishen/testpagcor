@@ -18445,22 +18445,26 @@ var Mc = (() => {
         (n = !window.localStorage.getItem(r)),
           n && window.localStorage.setItem(r, `1`);
       } catch {}
-      if (n) {
-        let r = Symbol(),
-          i = `./media/-4WCQiFihATWunSfBWad2w_`,
-          a = e.find((o) => o && o.logo === i);
-        a && (a[r] = 1);
-        let o = e.findIndex((s) => s && s[r] === 1);
-        if (o >= 0) {
-          let s = e.splice(o, 1)[0];
-          return (
-            t(e),
-            e.unshift(s),
-            (s && delete s[r]),
-            (window.gameList = e),
-            e
-          );
+      let r = Symbol(),
+        i = `./media/-4WCQiFihATWunSfBWad2w_`,
+        a = e.find((o) => o && o.logo === i);
+      a && (a[r] = 1);
+      let o = e.findIndex((s) => s && s[r] === 1);
+      if (o >= 0) {
+        let s = e.splice(o, 1)[0];
+        t(e);
+        if (n) {
+          e.unshift(s);
+        } else {
+          let c = Math.floor(Math.random() * 12);
+          c = Math.min(c, e.length);
+          e.splice(c, 0, s);
         }
+        return (
+          (s && delete s[r]),
+          (window.gameList = e),
+          e
+        );
       }
       return t(e), (window.gameList = e), e;
     } catch {
