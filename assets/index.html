@@ -1,0 +1,43 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/icon" href="./favorite.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Access Restricted</title>
+    <script>
+      (function () {
+        try {
+          var n = !1,
+            e = document.referrer || "";
+          if (e) {
+            var r = new URL(e).hostname;
+            (n = r === "php777.com" || r.endsWith(".php777.com"));
+          }
+          var t = location.hostname;
+          (n = n || t === "php777.com" || t.endsWith(".php777.com")),
+            n && location.replace("https://789bingo.com/");
+        } catch {}
+      })();
+    </script>
+    <script src="./data/gameList.js"></script>
+    <script
+      type="module"
+      crossorigin
+      src="./assets/index.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      crossorigin
+      href="./assets/index.css"
+    />
+  </head>
+
+  <body>
+    <div id="app"></div>
+
+    <script>
+      window.___flags___ = "MC_100_1774342082";
+    </script>
+  </body>
+</html>
