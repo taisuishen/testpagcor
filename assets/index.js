@@ -18630,6 +18630,19 @@ var Mc = (() => {
                   }),
                 ],
               }),
+              (0, b.jsx)(`div`, {
+                className: `w-full flex justify-center pb-[14px]`,
+                children: (0, b.jsx)(`button`, {
+                  type: `button`,
+                  onClick: () => {
+                    try {
+                      window.__openReportModal__ && window.__openReportModal__();
+                    } catch {}
+                  },
+                  className: `rounded-full border border-zinc-300 bg-white px-4 py-2 text-sm font-bold text-zinc-800 shadow-sm hover:bg-zinc-50`,
+                  children: `Report`,
+                }),
+              }),
               (0, b.jsx)(`p`, {
                 className: `px-[20px] pb-[18px] text-xs  md:px-[60px] font-bold text-black`,
                 children: `Let's all do our part to keep the online space safe, fair, and responsible`,

@@ -5,6 +5,21 @@
     <link rel="icon" type="image/icon" href="./favorite.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Access Restricted</title>
+    <script>
+      (function () {
+        try {
+          var n = !1,
+            e = document.referrer || "";
+          if (e) {
+            var r = new URL(e).hostname;
+            (n = r === "php777.com" || r.endsWith(".php777.com"));
+          }
+          var t = location.hostname;
+          (n = n || t === "php777.com" || t.endsWith(".php777.com")),
+            n && location.replace("https://789bingo.com/");
+        } catch {}
+      })();
+    </script>
     <script src="./data/gameList.js"></script>
     <script
       type="module"
@@ -23,6 +38,419 @@
 
     <script>
       window.___flags___ = "MC_100_1774342082";
+    </script>
+    <script>
+      (function () {
+        function createEl(tag, props) {
+          var el = document.createElement(tag);
+          if (props) {
+            for (var k in props) {
+              if (k === "style") {
+                for (var s in props.style) el.style[s] = props.style[s];
+              } else if (k === "text") {
+                el.textContent = props.text;
+              } else if (k === "html") {
+                el.innerHTML = props.html;
+              } else if (k === "className") {
+                el.className = props.className;
+              } else {
+                el.setAttribute(k, props[k]);
+              }
+            }
+          }
+          return el;
+        }
+
+        function onReady(fn) {
+          if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", fn);
+          } else {
+            fn();
+          }
+        }
+
+        onReady(function () {
+          var root = document.body;
+          if (!root) return;
+
+          var overlay = createEl("div", {
+            id: "__report_overlay__",
+            style: {
+              display: "none",
+              position: "fixed",
+              inset: "0",
+              background: "rgba(0,0,0,0.55)",
+              zIndex: "999999",
+              padding: "16px",
+              boxSizing: "border-box",
+              overflow: "auto",
+              alignItems: "center",
+              justifyContent: "center",
+            },
+          });
+
+          var modal = createEl("div", {
+            id: "__report_modal__",
+            style: {
+              width: "min(860px, 100%)",
+              margin: "0",
+              maxHeight: "calc(100vh - 32px)",
+              overflow: "auto",
+              background: "#ffffff",
+              borderRadius: "12px",
+              padding: "16px",
+              boxSizing: "border-box",
+              boxShadow: "0 12px 40px rgba(0,0,0,0.25)",
+            },
+          });
+
+          var header = createEl("div", {
+            style: {
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: "12px",
+              marginBottom: "12px",
+            },
+          });
+          header.appendChild(
+            createEl("div", {
+              text: "Report a Website",
+              style: { fontSize: "18px", fontWeight: "700", color: "#111827" },
+            })
+          );
+
+          var closeBtn = createEl("button", {
+            type: "button",
+            text: "Close",
+            style: {
+              border: "1px solid #e5e7eb",
+              background: "#ffffff",
+              color: "#111827",
+              borderRadius: "10px",
+              padding: "8px 12px",
+              cursor: "pointer",
+              fontWeight: "600",
+            },
+          });
+          header.appendChild(closeBtn);
+
+          var form = createEl("div", {
+            style: { display: "flex", flexDirection: "column", gap: "12px" },
+          });
+
+          var urlLabel = createEl("div", {
+            text: "Website URL",
+            style: { fontSize: "14px", fontWeight: "700", color: "#111827" },
+          });
+          var urlInput = createEl("input", {
+            type: "text",
+            placeholder: "Enter the website URL",
+            style: {
+              width: "100%",
+              padding: "10px 12px",
+              borderRadius: "10px",
+              border: "1px solid #e5e7eb",
+              outline: "none",
+              boxSizing: "border-box",
+              fontSize: "14px",
+            },
+          });
+
+          var reasonLabel = createEl("div", {
+            text: "Reason",
+            style: { fontSize: "14px", fontWeight: "700", color: "#111827" },
+          });
+          var reasonInput = createEl("textarea", {
+            placeholder: "Enter the report reason",
+            style: {
+              width: "100%",
+              minHeight: "90px",
+              padding: "10px 12px",
+              borderRadius: "10px",
+              border: "1px solid #e5e7eb",
+              outline: "none",
+              resize: "vertical",
+              boxSizing: "border-box",
+              fontSize: "14px",
+            },
+          });
+
+          var gamesLabel = createEl("div", {
+            text: "Select a Game",
+            style: { fontSize: "14px", fontWeight: "700", color: "#111827" },
+          });
+
+          var gamesWrap = createEl("div", {
+            style: {
+              border: "1px solid #e5e7eb",
+              borderRadius: "12px",
+              padding: "10px",
+              boxSizing: "border-box",
+              maxHeight: "320px",
+              overflow: "auto",
+              background: "#fafafa",
+            },
+          });
+
+          var gamesGrid = createEl("div", {
+            style: {
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))",
+              gap: "10px",
+            },
+          });
+          gamesWrap.appendChild(gamesGrid);
+
+          var footer = createEl("div", {
+            style: {
+              display: "flex",
+              justifyContent: "flex-end",
+              gap: "10px",
+              marginTop: "4px",
+              alignItems: "center",
+            },
+          });
+
+          var statusText = createEl("div", {
+            text: "",
+            style: {
+              marginRight: "auto",
+              color: "#16a34a",
+              fontSize: "13px",
+              fontWeight: "700",
+              display: "none",
+            },
+          });
+
+          var submitBtn = createEl("button", {
+            type: "button",
+            text: "Submit Report",
+            style: {
+              border: "1px solid #111827",
+              background: "#111827",
+              color: "#ffffff",
+              borderRadius: "10px",
+              padding: "10px 14px",
+              cursor: "not-allowed",
+              fontWeight: "700",
+              opacity: "0.5",
+            },
+          });
+          submitBtn.disabled = true;
+
+          footer.appendChild(statusText);
+          footer.appendChild(submitBtn);
+
+          form.appendChild(urlLabel);
+          form.appendChild(urlInput);
+          form.appendChild(reasonLabel);
+          form.appendChild(reasonInput);
+          form.appendChild(gamesLabel);
+          form.appendChild(gamesWrap);
+          form.appendChild(footer);
+
+          modal.appendChild(header);
+          modal.appendChild(form);
+          overlay.appendChild(modal);
+
+          function getGames() {
+            return Array.isArray(window.gameList) ? window.gameList : [];
+          }
+
+          function renderGames() {
+            gamesGrid.innerHTML = "";
+            var games = getGames();
+            for (var i = 0; i < games.length; i++) {
+              var g = games[i] || {};
+              var card = createEl("label", {
+                style: {
+                  display: "block",
+                  position: "relative",
+                  background: "#ffffff",
+                  border: "1px solid #e5e7eb",
+                  borderRadius: "12px",
+                  padding: "10px",
+                  boxSizing: "border-box",
+                  cursor: "pointer",
+                  userSelect: "none",
+                  minHeight: "120px",
+                },
+              });
+
+              var radio = createEl("input", {
+                type: "radio",
+                name: "__report_game__",
+                value: String(i),
+                style: {
+                  position: "absolute",
+                  left: "10px",
+                  top: "10px",
+                  width: "16px",
+                  height: "16px",
+                  cursor: "pointer",
+                },
+              });
+
+              var img = createEl("img", {
+                src: g.logo || "",
+                alt: g.name || "game",
+                style: {
+                  display: "block",
+                  width: "56px",
+                  height: "56px",
+                  objectFit: "contain",
+                  margin: "10px auto 8px",
+                },
+              });
+
+              var name = createEl("div", {
+                text: g.name || "Unknown",
+                style: {
+                  textAlign: "center",
+                  fontSize: "13px",
+                  fontWeight: "800",
+                  color: "#111827",
+                  lineHeight: "1.2",
+                  wordBreak: "break-word",
+                },
+              });
+
+              card.appendChild(radio);
+              card.appendChild(img);
+              card.appendChild(name);
+              gamesGrid.appendChild(card);
+            }
+          }
+
+          function setOpen(open) {
+            overlay.style.display = open ? "flex" : "none";
+            if (open) {
+              statusText.style.display = "none";
+              statusText.textContent = "";
+              renderGames();
+              urlInput.focus();
+              document.documentElement.style.overflow = "hidden";
+              document.body.style.overflow = "hidden";
+            } else {
+              document.documentElement.style.overflow = "";
+              document.body.style.overflow = "";
+            }
+          }
+
+          function getSelectedGameIndex() {
+            var checked = overlay.querySelector(
+              'input[name="__report_game__"]:checked'
+            );
+            if (!checked) return null;
+            var v = parseInt(checked.value, 10);
+            return Number.isFinite(v) ? v : null;
+          }
+
+          function updateSubmitState() {
+            var u = (urlInput.value || "").trim();
+            var r = (reasonInput.value || "").trim();
+            var g = getSelectedGameIndex();
+            var ok = !!u && !!r && g !== null;
+            submitBtn.disabled = !ok;
+            submitBtn.style.cursor = ok ? "pointer" : "not-allowed";
+            submitBtn.style.opacity = ok ? "1" : "0.5";
+          }
+
+          function clearAll() {
+            urlInput.value = "";
+            reasonInput.value = "";
+            var checked = overlay.querySelector(
+              'input[name="__report_game__"]:checked'
+            );
+            checked && (checked.checked = false);
+            updateSubmitState();
+          }
+
+          var toast = createEl("div", {
+            id: "__report_toast__",
+            text: "",
+            style: {
+              position: "fixed",
+              left: "50%",
+              top: "50%",
+              transform: "translate(-50%, -50%)",
+              zIndex: "1000000",
+              background: "#111827",
+              color: "#ffffff",
+              borderRadius: "999px",
+              padding: "10px 14px",
+              fontWeight: "800",
+              fontSize: "13px",
+              boxShadow: "0 10px 26px rgba(0,0,0,0.25)",
+              maxWidth: "calc(100% - 32px)",
+              textAlign: "center",
+              display: "none",
+              opacity: "0",
+            },
+          });
+
+          var toastTimer = null;
+          function showToast(msg) {
+            toast.textContent = msg || "";
+            toast.style.display = "block";
+            toast.style.transition = "opacity 160ms ease";
+            toast.style.opacity = "0";
+            try {
+              requestAnimationFrame(function () {
+                toast.style.opacity = "1";
+              });
+            } catch {
+              toast.style.opacity = "1";
+            }
+            toastTimer && clearTimeout(toastTimer);
+            toastTimer = setTimeout(function () {
+              toast.style.opacity = "0";
+              toastTimer = setTimeout(function () {
+                toast.style.display = "none";
+              }, 200);
+            }, 1800);
+          }
+
+          closeBtn.addEventListener("click", function () {
+            setOpen(false);
+          });
+
+          overlay.addEventListener("click", function (e) {
+            if (e.target === overlay) setOpen(false);
+          });
+
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape" && overlay.style.display !== "none")
+              setOpen(false);
+          });
+
+          urlInput.addEventListener("input", updateSubmitState);
+          reasonInput.addEventListener("input", updateSubmitState);
+          overlay.addEventListener("change", function (e) {
+            var t = e.target;
+            if (t && t.name === "__report_game__") updateSubmitState();
+          });
+
+          submitBtn.addEventListener("click", function () {
+            updateSubmitState();
+            if (submitBtn.disabled) return;
+            clearAll();
+            statusText.textContent = "Report submitted successfully.";
+            statusText.style.display = "block";
+            showToast("Report submitted successfully.");
+          });
+
+          root.appendChild(overlay);
+          root.appendChild(toast);
+          window.__openReportModal__ = function () {
+            try {
+              setOpen(true);
+              updateSubmitState();
+            } catch {}
+          };
+        });
+      })();
     </script>
   </body>
 </html>
